@@ -1,0 +1,145 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonia1="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
+		mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="diagram.MainWindow"
+        x:CompileBindings="False"
+        Title="Диаграма хищник-жертва">
+    <Grid
+		Name="ModelPreditorPrey"
+		ColumnDefinitions="Auto,*,*,*,*"
+		RowDefinitions="auto,Auto,*,*">
+		<TextBlock
+			HorizontalAlignment="Center" Grid.Column="0" Margin="10"
+			Text="Диаграмма Хищник-жертва" FontSize="25"  Foreground="Indigo"/>
+		<ScrollViewer Grid.Column="0" Grid.ColumnSpan="5"  Grid.Row="1"  >
+			
+			<WrapPanel Margin="10" Orientation="Horizontal"  >
+			<TextBlock
+				Text="α -коэфициент гибели жертвы за счёт встречи жертвы с хищником :" Margin="10 "
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="WrapWithOverflow"/>			
+			<TextBox
+				Name="Textbox_alfa"
+				Text="{Binding Alpha}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="ε - биотический потенциал популяции жертв :"
+				Margin="10"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="Textbox_epsilon"
+				
+				Text="{Binding Epsilon}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="β - коэффициент естественной гибели хищников:"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="Textbox_beta"
+				Text="{Binding Beta}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="σ - Коэффициент роста:"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="WrapWithOverflow"/>
+			<TextBox
+				Name="Textbox_omega"
+				Text="{Binding Omega}"
+				KeyUp="TextBox_KeyUp"/>
+			
+			<TextBlock
+				Text="колво 1ого  поколения жертв :"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPrey1"
+				Margin="10 0"
+				Text="{Binding PreyQuantity1}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text=" колво 1ого  поколения хищников:"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPreditor1" 
+				
+				Text="{Binding PredatorQuantity1}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="колво 2ого поколения жертв :"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPrey2"
+				Text="{Binding PreyQuantity2}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="колво 2ого поколения хищников :"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPreditor2"
+				Text="{Binding PredatorQuantity2}"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text=" колво 3ьего  поколения жертв :"
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPrey3"
+				Text="{Binding PreyQuantity3}"
+				FontWeight="Heavy"
+				KeyUp="TextBox_KeyUp"/>
+			<TextBlock
+				Text="колво 3ьего  поколения хищников: "
+				Margin="10 0"
+				FontWeight="Heavy"
+				Foreground="CadetBlue"
+				TextWrapping="Wrap"/>
+			<TextBox
+				Name="TextBox_GenPreditor3"
+				FontWeight="Heavy"
+				Text="{Binding PredatorQuantity3}"
+				KeyUp="TextBox_KeyUp"/>
+		</WrapPanel>
+		</ScrollViewer>
+		<TabControl
+			Margin="10"
+			Grid.Column="0" Grid.ColumnSpan="3"
+			Grid.Row="2" Grid.RowSpan="3">
+			<TabItem	
+				Header="Фазовый портрет">
+				<avalonia1:CartesianChart
+					Name="phase_portrait"
+					Series="{Binding PhasePoints}"/>
+			</TabItem>
+			<TabItem 
+				Header="График">
+				<avalonia1:CartesianChart
+					Name="graph"
+					Series="{Binding GraphPoints}"/>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</Window>
